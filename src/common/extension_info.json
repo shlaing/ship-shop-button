@@ -1,0 +1,18 @@
+{
+    "description": "Ship shop description", 
+    "creator": "Shwe", 
+    "background_scripts": [
+        "main.js"
+    ], 
+	"content_scripts": [
+        "content.js"
+    ],
+    "homepage_url": "https://google.com/", 
+    "version": "0.9.0", 
+    "browser_button": {
+        "caption": "Kango", 
+        "icon": "icons/button.png", 
+        "tooltipText": "Kango"
+    }, 
+    "name": "Ship Shop Button"
+}
