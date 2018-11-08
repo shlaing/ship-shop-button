@@ -13,14 +13,19 @@ var target_url = "http://52.220.23.215";
 var cart = document.getElementById("rightmenu");
 var addToBag = document.getElementsByClassName("add");
 
+//// CSS
+var floatBtnCss = "position:fixed;top: 10px;right: 600px;z-index:10000";
+
+//// Class
+var floatBtnClass = "btn bg-light btn-flat";
+
+
 init();
 
 function init(){
     if(origin == target_url){
-        
+
         addButton();
-        addHeaderCss();
-    
         
     }else{
         console.log( "URL not match : " +origin);
@@ -28,17 +33,13 @@ function init(){
 }
 
 /////////////// functions
-function addHeaderCss(){
-
-}
 
 function addButton(){
-    var floatBtnCss = "position:fixed;top: 10px;right: 600px;z-index:10000";
-    var floatBtnClass = "btn bg-light btn-flat";
-    //mainform
+    
     $("body").append("<button id='add_to_ss' class='"+floatBtnClass+"' style='"+floatBtnCss+"'>Cart</button>");
 }
 
+// Call to api to get cart.json
 function loadFromCartJson(){
     var settings = {
         "async": true,
