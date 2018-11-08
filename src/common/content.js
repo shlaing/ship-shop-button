@@ -8,13 +8,17 @@
 
 var $ = window.$.noConflict(true); // Required for IE
 
-var origin   = window.location.origin; // get current url
-var target_url = "http://52.220.23.215";
+console.log(window.location);
+
+var host   = window.location.host; // get current url
+var href   = window.location.href;
+var target_url = "colourpop.com";
 var cart = document.getElementById("rightmenu");
 var addToBag = document.getElementsByClassName("add");
+var colour_pop_checkout = "checkouts";
 
 //// CSS
-var floatBtnCss = "position:fixed;top: 10px;right: 600px;z-index:10000";
+var floatBtnCss = "position:fixed;top: 10px;right: 600px;z-index:60000;background-color:#569853";
 
 //// Class
 var floatBtnClass = "btn bg-light btn-flat";
@@ -23,20 +27,34 @@ var floatBtnClass = "btn bg-light btn-flat";
 init();
 
 function init(){
-    if(origin == target_url){
+    if(host == target_url){
 
-        addButton();
+
+        
+        if(!href.includes(colour_pop_checkout)){
+            modifySite();
+            addButton();
+        }else{
+            window.location = "https://colourpop.com/cart";
+        }
+
+        
         
     }else{
-        console.log( "URL not match : " +origin);
+        console.log( "URL not match : " + host);
     }
 }
 
 /////////////// functions
+function modifySite(){
+    $("body").css({'margin-top':'80px'});
+    $("header").css({'margin-top':'80px'});
+    $("#checkoutButton").css({'display':'none'});
+}
 
 function addButton(){
     
-    $("body").append("<button id='add_to_ss' class='"+floatBtnClass+"' style='"+floatBtnCss+"'>Cart</button>");
+    $("body").append("<button id='add_to_ss' class='' style='"+floatBtnCss+"'>Checkout with Ship-Shop</button>");
 }
 
 // Call to api to get cart.json
@@ -61,8 +79,8 @@ function loadFromCartJson(){
 $("#add_to_ss").on('click',function(){
     alert("triggered");
 
-    $('body').css({'background-color':'#234333'});
-    $('body').hide();
+    // $('body').css({'background-color':'#234333'});
+    // $('body').hide();
 
     loadFromCartJson();
 });
